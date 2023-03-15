@@ -1,18 +1,41 @@
+import { removeTodo, upDateTodo } from 'api/ApiTodo';
 import React from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 
 type Props = {
   completed: boolean;
   text: string;
-  title: string;
+  id: string;
 };
 
-const TodoItem = ({ completed, text, title }: Props) => {
+const TodoItem = ({ completed, text, id }: Props) => {
+  const queryClient = useQueryClient();
+  const mutationRemove = useMutation(removeTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('todos');
+    },
+  });
+
+  const mutationUpdate = useMutation(upDateTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('todos');
+    },
+  });
+
+  const handleCompleted = (id: string, completed: boolean) => {
+    const query = { id, completed };
+    mutationUpdate.mutate(query);
+  };
+
+  const handleDelete = (id: string) => {
+    mutationRemove.mutate(id);
+  };
+
+  console.log('Render');
+
   return (
-    <li className="relative flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
+    <li className=" flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
       <div className={`${completed ? 'line-through' : ''} flex flex-col gap-2`}>
-        <h2>
-          <span className="font-bold text-sm">Title :</span> {title}
-        </h2>
         <p>
           <span className="font-bold text-sm">Body :</span> {text}
         </p>
@@ -20,18 +43,22 @@ const TodoItem = ({ completed, text, title }: Props) => {
       <div
         className={`${
           completed ? 'bg-teal-200' : 'bg-red-200'
-        } rounded-lg flex justify-center items-center h-8 w-full cursor-pointer`}
+        }  rounded-lg flex justify-center items-center h-8 w-full cursor-pointer`}
       >
-        <p className="dark:text-slate-900">
+        <p
+          onClick={() => handleCompleted(id, !completed)}
+          className="dark:text-slate-900 flex-grow text-center"
+        >
           {completed ? 'DONE' : 'IN PROGRESS'}
         </p>
+        <button
+          onClick={() => handleDelete(id)}
+          className=" h-full px-5 rounded-md bg-red-400"
+          type="button"
+        >
+          X
+        </button>
       </div>
-      <button
-        className="absolute top-3 right-2 px-5 rounded-md bg-red-600"
-        type="button"
-      >
-        X
-      </button>
     </li>
   );
 };
