@@ -8,7 +8,7 @@ type Props = {
 
 const TodoItem = ({ completed, text, title }: Props) => {
   return (
-    <li className="flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
+    <li className="relative flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
       <div className={`${completed ? 'line-through' : ''} flex flex-col gap-2`}>
         <h2>
           <span className="font-bold text-sm">Title :</span> {title}
@@ -26,6 +26,12 @@ const TodoItem = ({ completed, text, title }: Props) => {
           {completed ? 'DONE' : 'IN PROGRESS'}
         </p>
       </div>
+      <button
+        className="absolute top-3 right-2 px-5 rounded-md bg-red-600"
+        type="button"
+      >
+        X
+      </button>
     </li>
   );
 };

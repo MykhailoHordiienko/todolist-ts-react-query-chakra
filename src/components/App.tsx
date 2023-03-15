@@ -7,8 +7,6 @@ import Header from './Header/Header';
 import LoadingSkeleton from './LoadingSceleton/LoadingSkeleton';
 import TodoList from './TodoList/TodoList';
 
-import { DataTodos } from 'types';
-
 export const App = () => {
   const [toggleDarkMod, setToggleDarkMod] = useState(false);
 
