@@ -7,6 +7,8 @@ import Header from './Header/Header';
 import LoadingSkeleton from './LoadingSceleton/LoadingSkeleton';
 import TodoList from './TodoList/TodoList';
 
+import { DataTodos } from 'types';
+
 export const App = () => {
   const [toggleDarkMod, setToggleDarkMod] = useState(false);
 
@@ -18,7 +20,7 @@ export const App = () => {
     }
   };
 
-  const { isLoading, isError, data, error } = useQuery('todos', getTodos);
+  const { isLoading, isError, data } = useQuery('todos', getTodos);
   useEffect(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setToggleDarkMod(true);
@@ -35,12 +37,12 @@ export const App = () => {
   return (
     <div className="dark:bg-slate-700 bg-zinc-100 h-screen transition-all duration-1000 px-4">
       <Header handleDayMod={handleDayMod} />
-      {isLoading ? (
+      {isLoading || data === undefined ? (
         <LoadingSkeleton />
       ) : (
         <main className="h-auto">
           <AddTodo />
-          <TodoList />
+          <TodoList toDos={data} />
         </main>
       )}
     </div>
