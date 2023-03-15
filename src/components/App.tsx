@@ -1,7 +1,11 @@
+import { getTodos } from 'api/ApiTodo';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import AddTodo from './AddTodo/AddTodo';
-
+import ErrorPage from './ErrorPage/ErrorPage';
 import Header from './Header/Header';
+import LoadingSkeleton from './LoadingSceleton/LoadingSkeleton';
+import TodoList from './TodoList/TodoList';
 
 export const App = () => {
   const [toggleDarkMod, setToggleDarkMod] = useState(false);
@@ -14,6 +18,7 @@ export const App = () => {
     }
   };
 
+  const { isLoading, isError, data, error } = useQuery('todos', getTodos);
   useEffect(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setToggleDarkMod(true);
@@ -23,12 +28,21 @@ export const App = () => {
     }
   }, [toggleDarkMod]);
 
+  if (isError) {
+    return <ErrorPage />;
+  }
+
   return (
     <div className="dark:bg-slate-700 bg-zinc-100 h-screen transition-all duration-1000 px-4">
       <Header handleDayMod={handleDayMod} />
-      <main className="h-full">
-        <AddTodo />
-      </main>
+      {isLoading ? (
+        <LoadingSkeleton />
+      ) : (
+        <main className="h-auto">
+          <AddTodo />
+          <TodoList />
+        </main>
+      )}
     </div>
   );
 };

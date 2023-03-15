@@ -4,7 +4,7 @@ type Props = {};
 
 const AddTodo = (props: Props) => {
   return (
-    <div className=" dark:text-slate-200 dark:bg-slate-500 dark:shadow-white p-5 lg:max-w-5xl xl:max-w-7xl rounded-2xl shadow-2xl m-auto font-semibold bg-slate-100 text-slate-900 mt-10 h-1/5">
+    <div className=" dark:text-slate-200 dark:bg-slate-500 dark:shadow-white p-5 lg:max-w-5xl xl:max-w-7xl rounded-2xl shadow-xl m-auto font-semibold bg-slate-100 text-slate-900 mt-10 h-52">
       <form className="h-full flex flex-col gap-2 md:gap-5">
         <textarea
           name="text"
