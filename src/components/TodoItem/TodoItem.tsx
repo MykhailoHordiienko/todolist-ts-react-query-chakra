@@ -1,37 +1,20 @@
 import { removeTodo, upDateTodo } from 'api/ApiTodo';
-import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useTodosMutation } from 'Hooks/useTodosMutation';
 
-type Props = {
-  completed: boolean;
-  text: string;
-  id: string;
-};
+import { Todo } from 'types';
 
-const TodoItem = ({ completed, text, id }: Props) => {
-  const queryClient = useQueryClient();
-  const mutationRemove = useMutation(removeTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('todos');
-    },
-  });
-
-  const mutationUpdate = useMutation(upDateTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('todos');
-    },
-  });
+const TodoItem = ({ completed, text, id }: Todo) => {
+  const { mutate: deleteTodo } = useTodosMutation(removeTodo);
+  const { mutate: toggleTodo } = useTodosMutation(upDateTodo);
 
   const handleCompleted = (id: string, completed: boolean) => {
     const query = { id, completed };
-    mutationUpdate.mutate(query);
+    toggleTodo(query);
   };
 
   const handleDelete = (id: string) => {
-    mutationRemove.mutate(id);
+    deleteTodo(id);
   };
-
-  console.log('Render');
 
   return (
     <li className=" flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
@@ -40,17 +23,15 @@ const TodoItem = ({ completed, text, id }: Props) => {
           <span className="font-bold text-sm">Body :</span> {text}
         </p>
       </div>
-      <div
-        className={`${
-          completed ? 'bg-teal-200' : 'bg-red-200'
-        }  rounded-lg flex justify-center items-center h-8 w-full cursor-pointer`}
-      >
-        <p
+      <div className=" flex justify-center items-center h-8  ">
+        <button
           onClick={() => handleCompleted(id, !completed)}
-          className="dark:text-slate-900 flex-grow text-center"
+          className={`${
+            completed ? 'bg-teal-200' : 'bg-red-200'
+          }  rounded-lg flex justify-center items-center w-full cursor-pointer dark:text-slate-900 flex-grow text-center h-full`}
         >
           {completed ? 'DONE' : 'IN PROGRESS'}
-        </p>
+        </button>
         <button
           onClick={() => handleDelete(id)}
           className=" h-full px-5 rounded-md bg-red-400"

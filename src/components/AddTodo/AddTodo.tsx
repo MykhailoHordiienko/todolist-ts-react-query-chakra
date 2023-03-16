@@ -1,20 +1,15 @@
 import { addTodo } from 'api/ApiTodo';
-import { useMutation, useQueryClient } from 'react-query';
+import { useTodosMutation } from 'Hooks/useTodosMutation';
 
-type Props = {};
+const AddTodo = () => {
+  const { mutate: newTodo, isError, isLoading } = useTodosMutation(addTodo);
 
-const AddTodo = (props: Props) => {
-  const queryClient = useQueryClient();
-  const mutation = useMutation(addTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('todos');
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const toDo = e.currentTarget.text.value;
-    mutation.mutate({ text: toDo, completed: false });
+    newTodo({ text: toDo, completed: false });
+
+    e.currentTarget.text.value = '';
   };
 
   return (
@@ -29,7 +24,8 @@ const AddTodo = (props: Props) => {
         />
         <button
           type="submit"
-          className="bg-teal-200 rounded-lg h-16 dark:bg-slate-900"
+          disabled={isLoading || isError}
+          className="bg-teal-200 rounded-lg h-16 dark:bg-slate-900 disabled:text-transparent disabled:bg-teal-200/40"
         >
           Submit
         </button>
