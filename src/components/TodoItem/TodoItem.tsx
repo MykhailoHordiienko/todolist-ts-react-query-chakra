@@ -21,7 +21,7 @@ const TodoItem = ({ completed, text, id }: Todo) => {
   return (
     <li className=" flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
       <div className={`${completed ? 'line-through' : ''} flex flex-col gap-2`}>
-        <p>
+        <p className="break-all">
           <span className="font-bold text-sm">Body :</span> {text}
         </p>
       </div>
