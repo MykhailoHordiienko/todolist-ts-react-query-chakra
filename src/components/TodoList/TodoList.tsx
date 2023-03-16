@@ -11,8 +11,9 @@ const TodoList = () => {
   if (isError) {
     return <ErrorPage />;
   }
+
   return (
-    <div className=" dark:text-slate-200 dark:bg-slate-500 dark:shadow-white p-5 lg:max-w-5xl xl:max-w-7xl rounded-2xl shadow-xl m-auto font-semibold bg-slate-100 text-slate-900 mt-10 h-[350px] md:h-[550px] overflow-y-scroll scrollbar-none">
+    <div className=" dark:text-slate-200 dark:bg-slate-500 p-5 lg:max-w-5xl xl:max-w-7xl rounded-2xl shadow-xl m-auto font-semibold bg-slate-100 text-slate-900 mt-10 h-[350px] md:h-[550px] overflow-y-scroll scrollbar-none">
       {isLoading || data === undefined ? (
         <LoadingSkeleton />
       ) : (

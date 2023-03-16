@@ -7,7 +7,7 @@ type Props = {
 
 const Header = ({ handleDarkMod, handleWhiteMod }: Props) => {
   return (
-    <header className="flex dark:text-slate-300 dark:bg-slate-900 dark:shadow-white items-center justify-between p-5 md:p-10 lg:max-w-5xl xl:max-w-7xl rounded-b-2xl shadow-xl m-auto font-bold h-20 bg-slate-100 text-slate-900">
+    <header className="flex dark:text-slate-300 dark:bg-slate-900 items-center justify-between p-5 md:p-10 lg:max-w-5xl xl:max-w-7xl rounded-b-2xl shadow-xl m-auto font-bold h-20 bg-slate-100 text-slate-900">
       <MoonIcon
         onClick={handleDarkMod}
         className="w-8 cursor-pointer animate-pulse text-gray-600"

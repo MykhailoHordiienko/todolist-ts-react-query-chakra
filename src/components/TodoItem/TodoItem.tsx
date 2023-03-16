@@ -4,8 +4,10 @@ import { useTodosMutation } from 'Hooks/useTodosMutation';
 import { Todo } from 'types';
 
 const TodoItem = ({ completed, text, id }: Todo) => {
-  const { mutate: deleteTodo } = useTodosMutation(removeTodo);
-  const { mutate: toggleTodo } = useTodosMutation(upDateTodo);
+  const { mutate: deleteTodo, isLoading: isLoadingDelete } =
+    useTodosMutation(removeTodo);
+  const { mutate: toggleTodo, isLoading: isLoadingUpdate } =
+    useTodosMutation(upDateTodo);
 
   const handleCompleted = (id: string, completed: boolean) => {
     const query = { id, completed };
@@ -26,15 +28,17 @@ const TodoItem = ({ completed, text, id }: Todo) => {
       <div className=" flex justify-center items-center h-8  ">
         <button
           onClick={() => handleCompleted(id, !completed)}
+          disabled={isLoadingUpdate}
           className={`${
             completed ? 'bg-teal-200' : 'bg-red-200'
-          }  rounded-lg flex justify-center items-center w-full cursor-pointer dark:text-slate-900 flex-grow text-center h-full`}
+          }  rounded-lg flex justify-center items-center w-full cursor-pointer dark:text-slate-900 flex-grow text-center h-full disabled:bg-transparent`}
         >
           {completed ? 'DONE' : 'IN PROGRESS'}
         </button>
         <button
+          disabled={isLoadingDelete}
           onClick={() => handleDelete(id)}
-          className=" h-full px-5 rounded-md bg-red-400"
+          className=" h-full px-5 rounded-md bg-red-400 disabled:bg-transparent"
           type="button"
         >
           X
