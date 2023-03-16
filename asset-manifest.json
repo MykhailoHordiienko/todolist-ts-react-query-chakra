@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/todolist-ts-react-query-tailwind/static/css/main.d4fc78e9.css",
-    "main.js": "/todolist-ts-react-query-tailwind/static/js/main.bf72fb92.js",
+    "main.css": "/todolist-ts-react-query-tailwind/static/css/main.2b7f2a1d.css",
+    "main.js": "/todolist-ts-react-query-tailwind/static/js/main.dcf4b87c.js",
     "static/media/defaultImg.jpeg": "/todolist-ts-react-query-tailwind/static/media/defaultImg.60157fd3f948049ca022.jpeg",
     "index.html": "/todolist-ts-react-query-tailwind/index.html",
-    "main.d4fc78e9.css.map": "/todolist-ts-react-query-tailwind/static/css/main.d4fc78e9.css.map",
-    "main.bf72fb92.js.map": "/todolist-ts-react-query-tailwind/static/js/main.bf72fb92.js.map"
+    "main.2b7f2a1d.css.map": "/todolist-ts-react-query-tailwind/static/css/main.2b7f2a1d.css.map",
+    "main.dcf4b87c.js.map": "/todolist-ts-react-query-tailwind/static/js/main.dcf4b87c.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4fc78e9.css",
-    "static/js/main.bf72fb92.js"
+    "static/css/main.2b7f2a1d.css",
+    "static/js/main.dcf4b87c.js"
   ]
 }
