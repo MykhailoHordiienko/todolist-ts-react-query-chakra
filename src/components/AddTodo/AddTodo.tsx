@@ -20,7 +20,9 @@ const AddTodo = () => {
     }
     setErrInput(false);
 
-    newTodo({ text: input, completed: false });
+    const date = new Date();
+
+    newTodo({ date, text: input, completed: false });
 
     setInput('');
   };

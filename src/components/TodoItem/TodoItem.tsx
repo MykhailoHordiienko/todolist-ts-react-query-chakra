@@ -1,9 +1,10 @@
 import { removeTodo, upDateTodo } from 'api/ApiTodo';
 import { useTodosMutation } from 'Hooks/useTodosMutation';
+import { formatDistance } from 'date-fns';
 
 import { Todo } from 'types';
 
-const TodoItem = ({ completed, text, id }: Todo) => {
+const TodoItem = ({ date, completed, text, id }: Todo) => {
   const { mutate: deleteTodo, isLoading: isLoadingDelete } =
     useTodosMutation(removeTodo);
   const { mutate: toggleTodo, isLoading: isLoadingUpdate } =
@@ -18,9 +19,16 @@ const TodoItem = ({ completed, text, id }: Todo) => {
     deleteTodo(id);
   };
 
+  const formateDate = formatDistance(new Date(date), new Date(), {
+    addSuffix: true,
+  });
+
   return (
     <li className=" flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300">
       <div className={`${completed ? 'line-through' : ''} flex flex-col gap-2`}>
+        <p className="break-all">
+          <span className="font-bold text-sm">At :</span> {formateDate}
+        </p>
         <p className="break-all">
           <span className="font-bold text-sm">Body :</span> {text}
         </p>

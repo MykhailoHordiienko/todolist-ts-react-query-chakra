@@ -1,18 +1,13 @@
 export type Todo = {
+  date: Date;
+
   completed: boolean;
   id: string;
   text: string;
 };
 
-export type DataTodos = {
-  data: Todo[];
-};
-
-export type Arrow = {
-  foo: () => void;
-};
-
 export type MutationType = {
+  date?: Date;
   completed?: boolean;
   id?: string;
   text?: string;

@@ -2,9 +2,7 @@ import React from 'react';
 
 import DefaultJpeg from './defaultImg.jpeg';
 
-type Props = {};
-
-const ErrorPage = (props: Props) => {
+const ErrorPage = () => {
   return (
     <div className="flex flex-col items-center justify-center absolute inset-0">
       <h1 className="mb-5 font-bold">Something go wrong, reload please...</h1>

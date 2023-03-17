@@ -15,7 +15,11 @@ export const getTodos = async () => {
   }
 };
 
-export const addTodo = async (query?: { text: string; completed: boolean }) => {
+export const addTodo = async (query?: {
+  date: string;
+  text: string;
+  completed: boolean;
+}) => {
   const toastId = toast.loading('Loading...');
   try {
     await axios.post('/todo', query);
