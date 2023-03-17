@@ -24,7 +24,7 @@ const TodoItem = ({ date, completed, text, id }: Todo) => {
   });
 
   return (
-    <li className=" flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300 hover:shadow-xl hover:scale-[1.01]">
+    <li className=" flex flex-col justify-between gap-2 border rounded-lg text-xs p-2 dark:bg-slate-900 dark:text-slate-300 hover:shadow-xl hover:scale-[1.01] focus:scale-[1.01]">
       <div className={`${completed ? 'line-through' : ''} flex flex-col gap-2`}>
         <p className="break-all">
           <span className="font-bold text-sm">At :</span> {formateDate}
