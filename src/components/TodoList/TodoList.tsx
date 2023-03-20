@@ -3,7 +3,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import LoadingSkeleton from '../LoadingSceleton/LoadingSkeleton';
 
 import { useQuery } from 'react-query';
-import { getTodos } from 'api/ApiTodo';
+import { getTodos } from 'services/services';
 import { Todo } from 'types';
 
 const TodoList = () => {

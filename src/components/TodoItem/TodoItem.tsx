@@ -1,4 +1,4 @@
-import { removeTodo, upDateTodo } from 'api/ApiTodo';
+import { removeTodo, upDateTodo } from 'services/services';
 import { useTodosMutation } from 'Hooks/useTodosMutation';
 import { formatDistance } from 'date-fns';
 
